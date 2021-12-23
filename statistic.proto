@@ -1,0 +1,14 @@
+syntax = "proto3";
+package statistic;
+option go_package = "statistic/;statistic";
+
+message count_data {
+  int32 a = 1;
+  int32 b = 2;
+  double win_count = 3;
+  double total_count = 4;
+}
+
+message statistic_data {
+  repeated count_data data = 1;
+}
