@@ -3,8 +3,8 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/CuteReimu/texas/statistic"
 	"strings"
-	"texas/statistic"
 )
 
 type winCountData struct {
