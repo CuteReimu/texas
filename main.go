@@ -16,8 +16,6 @@ type Game struct {
 	totalIn    int32
 }
 
-var stat *Statistic
-
 func main() {
 	const totalPlayerCount = 8
 	game := &Game{}
@@ -32,8 +30,6 @@ func main() {
 		game.players[i].InitGame(totalPlayerCount, 10000)
 	}
 	random := rand.NewSource(time.Now().UnixNano() / 1000000)
-	stat = NewStatistic()
-	stat.Load()
 	for {
 		game.turn++
 		fmt.Printf("第%d场\n", game.turn)
@@ -234,7 +230,7 @@ func (game *Game) NotifyResult() {
 }
 
 func (game *Game) NotifyAddCoin(playerId, count int32) {
-	fmt.Println("玩家", playerId, "获得", count, "筹码（+", count - game.players[playerId].GetInCount(), "）")
+	fmt.Println("玩家", playerId, "获得", count, "筹码（+", count-game.players[playerId].GetInCount(), "）")
 	totalCount := int32(len(game.players))
 	for id, player := range game.players {
 		player.NotifyAddCoin((playerId+totalCount-int32(id))%totalCount, count)
